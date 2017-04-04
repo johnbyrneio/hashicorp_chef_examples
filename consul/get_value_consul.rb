@@ -15,13 +15,13 @@ my_setting = Diplomat::Kv.get('my_app/my_setting')
 
 # Use that value in a Chef file resource
 file '/tmp/my_app.conf' do
-	content my_setting
+    content my_setting
 end
 
 # Or within a Chef template resource
 template "/tmp/my_app.conf" do
-  source "my_app.conf.erb"
-  variables(
-    :my_setting => my_setting
-  )
+    source "my_app.conf.erb"
+    variables(
+        :my_setting => my_setting
+    )
 end

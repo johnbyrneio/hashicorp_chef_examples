@@ -19,15 +19,15 @@ my_secret = Vault.logical.read("my_app/my_secret")
 
 # Use my secret within a Chef file resource
 file '/tmp/my_app.conf' do
-  content "#{my_secret.data[:username]}:#{my_secret.data[:password]}"
+    content "#{my_secret.data[:username]}:#{my_secret.data[:password]}"
 end
 
 # Or within a Chef template resource
 template "/tmp/my_app.conf" do
-  source "my_app.conf.erb"
-  sensitive true
-  variables(
-    :username => my_secret.data[:username],
-    :password => my_secret.data[:password],
-  )
+    source "my_app.conf.erb"
+    sensitive true
+    variables(
+        :username => my_secret.data[:username],
+        :password => my_secret.data[:password],
+    )
 end
